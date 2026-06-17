@@ -1,0 +1,420 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>13 Days To Go</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(
+-45deg,
+#ff9ecf,
+#ff7eb3,
+#c084fc,
+#7dd3fc
+);
+
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+width:90%;
+max-width:500px;
+padding:35px;
+text-align:center;
+
+background:rgba(255,255,255,0.18);
+
+backdrop-filter:blur(15px);
+
+border-radius:30px;
+
+box-shadow:
+0 8px 32px rgba(0,0,0,.15);
+
+color:white;
+}
+
+.page{
+display:none;
+animation:fade .6s ease;
+}
+
+.page.active{
+display:block;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+h1{
+font-family:'Fredoka',sans-serif;
+font-size:2.4rem;
+margin-bottom:15px;
+text-shadow:0 0 20px rgba(255,255,255,.7);
+}
+
+p{
+font-size:1.1rem;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+.btn{
+padding:14px 28px;
+border:none;
+border-radius:50px;
+font-size:1rem;
+font-weight:700;
+cursor:pointer;
+margin:10px;
+transition:.3s;
+}
+
+.yes{
+background:white;
+color:#ff4fa0;
+}
+
+.yes:hover{
+transform:scale(1.08);
+}
+
+.no{
+background:#ff4d4d;
+color:white;
+position:fixed;
+}
+
+.finalTitle{
+font-size:3rem;
+font-family:'Fredoka',sans-serif;
+line-height:1.2;
+}
+
+.finalText{
+margin-top:20px;
+font-size:1.2rem;
+font-weight:600;
+}
+
+.bubble{
+position:absolute;
+bottom:-100px;
+border-radius:50%;
+background:rgba(255,255,255,.25);
+animation:float 12s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="bubbles"></div>
+
+<div class="card">
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<h1>🙏 Bade Bhai Sorry 🙏</h1>
+
+<p>
+Please maan jao 🙏
+</p>
+
+<button class="btn yes" onclick="page2()">
+🤝 Maaf Kiya
+</button>
+
+<button class="btn no" id="noBtn1">
+😤 Nahi
+</button>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+
+<h1>🤨 Pakka??</h1>
+
+<p>
+Ek baar aur soch lo 😎
+</p>
+
+<button class="btn yes" onclick="page3()">
+😎 Haan Pakka
+</button>
+
+<button class="btn no" id="noBtn2">
+😤 Nahi
+</button>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="page3">
+
+<h1>🧐 Bilkul Pakka Na?</h1>
+
+<p>
+Last chance 😆
+</p>
+
+<button class="btn yes" onclick="page4()">
+✅ 100% Pakka
+</button>
+
+<button class="btn no" id="noBtn3">
+😤 Nahi
+</button>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="page4">
+
+<h1>😴 Okay Goodnight</h1>
+
+<p>
+Ab aage dekho...
+</p>
+
+<button class="btn yes" onclick="page5()">
+➡️ Continue
+</button>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="page5">
+
+<h1 class="finalTitle">
+🔥 13 DAYS TO GO 🔥
+</h1>
+
+<h1 class="finalTitle">
+⚡ AAR YA PAAR ⚡
+</h1>
+
+<div class="finalText">
+
+MISSION ACCEPTED ✅
+
+<br><br>
+
+13 Days.
+
+<br>
+
+No Excuses.
+
+<br>
+
+No Backing Out.
+
+<br><br>
+
+AAR YA PAAR.
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+
+
+```html
+<script>
+
+function show(id){
+document.querySelectorAll('.page')
+.forEach(p=>p.classList.remove('active'));
+
+document
+.getElementById(id)
+.classList.add('active');
+}
+
+function blast(){
+
+confetti({
+particleCount:180,
+spread:120,
+origin:{y:.7}
+});
+
+try{
+```javascript
+let sound = new Audio("wow.mp3");
+sound.play();
+```
+
+}catch(e){}
+}
+
+function page2(){
+blast();
+setTimeout(()=>{
+show('page2');
+},800);
+}
+
+function page3(){
+blast();
+
+setTimeout(()=>{
+show('page3');
+},800);
+}
+
+function page4(){
+blast();
+
+setTimeout(()=>{
+show('page4');
+},800);
+}
+
+function page5(){
+
+blast();
+
+show('page5');
+
+setInterval(()=>{
+
+confetti({
+particleCount:20,
+spread:70,
+origin:{
+x:Math.random(),
+y:Math.random()-0.2
+}
+});
+
+},500);
+
+}
+
+function move(btn){
+
+const x=Math.random()*
+(window.innerWidth-120);
+
+const y=Math.random()*
+(window.innerHeight-70);
+
+btn.style.left=x+'px';
+btn.style.top=y+'px';
+}
+
+['noBtn1','noBtn2','noBtn3']
+.forEach(id=>{
+
+const btn=document
+.getElementById(id);
+
+btn.addEventListener(
+'touchstart',
+function(e){
+e.preventDefault();
+move(btn);
+}
+);
+
+btn.addEventListener(
+'mouseover',
+function(){
+move(btn);
+}
+);
+
+});
+
+for(let i=0;i<20;i++){
+
+let bubble=
+document.createElement('div');
+
+bubble.className='bubble';
+
+let size=
+Math.random()*60+20;
+
+bubble.style.width=
+size+'px';
+
+bubble.style.height=
+size+'px';
+
+bubble.style.left=
+Math.random()*100+'%';
+
+bubble.style.animationDuration=
+(Math.random()*8+8)+'s';
+
+bubble.style.animationDelay=
+Math.random()*5+'s';
+
+document
+.getElementById('bubbles')
+.appendChild(bubble);
+
+}
+
+</script>
+```
